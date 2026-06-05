@@ -65,6 +65,7 @@ def retrieve_best_chunks(query, chunks, top_k=2):
     query_kw = extract_keywords(query)
     scored = []
     for chunk in chunks:
+        # compute the number of words shared between each chunk and query
         overlap = len(query_kw & extract_keywords(chunk["text"]))
         scored.append((overlap, chunk))
     scored.sort(key=lambda x: x[0], reverse=True)
