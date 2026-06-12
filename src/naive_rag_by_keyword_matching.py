@@ -2,6 +2,7 @@
 import os
 import re
 from helpers.llm_helper import call_llm_with_full_text, print_formatted_response
+from helpers.constants import STOP_WORDS
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -43,13 +44,7 @@ def chunk_documents(documents, chunk_size=200):
 # ──────────────────────────────────────────────
 # 3. Keyword Extraction
 # ──────────────────────────────────────────────
-STOP_WORDS = {
-    "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
-    "with", "is", "are", "of", "it", "this", "that", "by", "from", "as",
-    "be", "was", "were", "been", "being", "have", "has", "had", "do", "does",
-    "did", "will", "would", "shall", "should", "may", "might", "can", "could",
-    "not", "no", "so", "if", "than", "too", "very", "just", "about", "into",
-}
+
 
 def extract_keywords(text):
     """Tokenize, lowercase, remove punctuation & stop words."""
